@@ -2,7 +2,13 @@
   "status": "PASS",
   "candidate_files_scanned": 191,
   "issues": [],
-  "copied_original_files_unchanged": 174,
+  "copied_original_files_unchanged": 170,
+  "authorized_public_copy_edits": [
+    "site/index.html",
+    "site/PUBLIC_CASE_STUDY.html",
+    "site/PUBLIC_CASE_STUDY.md",
+    "site/ATTRIBUTIONS.html"
+  ],
   "real_data_or_weights_included": false,
   "new_gemini_generations": 0,
   "note": "Pattern scan plus explicit file allowlist review; not a comprehensive security certification."

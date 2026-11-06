@@ -611,8 +611,8 @@
   },
   {
     "path": "README.md",
-    "bytes": 5957,
-    "sha256": "aff1cecff34a50edfb7139c7b2b5145d1d8cf7e63ac6bf5e59fdf507bf94c0a6"
+    "bytes": 5583,
+    "sha256": "bfbfc4e11e8d2af1c039598058fdefc6987f1898b8461110592eef5f175e8212"
   },
   {
     "path": "requirements-agent.txt",
@@ -766,8 +766,8 @@
   },
   {
     "path": "site/ATTRIBUTIONS.html",
-    "bytes": 6691,
-    "sha256": "2f611afa9189ff8328ca3e85dbd51d7f9b028c3a4ded6adcfe2c8ee7cb18044a"
+    "bytes": 6664,
+    "sha256": "d1a172ce6b17e6c613de0421fc71b2f129989afb1b7a1291b251d64af461e7b9"
   },
   {
     "path": "site/gallery.js",
@@ -776,8 +776,8 @@
   },
   {
     "path": "site/index.html",
-    "bytes": 9221,
-    "sha256": "b9608608e7d6f8829392b7b4a61eb35f3b140e13f1916593bfcf3e87f2cf46b0"
+    "bytes": 9167,
+    "sha256": "b418810aa365b0fb2d52bfde904fc1be3e5a5611ac969d94923258916c781db5"
   },
   {
     "path": "site/LUCIDE_LICENSE.txt",
@@ -786,13 +786,13 @@
   },
   {
     "path": "site/PUBLIC_CASE_STUDY.html",
-    "bytes": 4288,
-    "sha256": "7c95414fe48cfd8ee3d825e1a255e6dd874ae69ac48bf68b9fc2caf0631b807c"
+    "bytes": 4030,
+    "sha256": "c312b3ab43d5aa101fff4365c9339dbeec8e69397aa21cf21183de6ff088b542"
   },
   {
     "path": "site/PUBLIC_CASE_STUDY.md",
-    "bytes": 3005,
-    "sha256": "ce5f1fd87829de198462bfecf683b5649f37cf50ce0be254bee40fabb809ce6f"
+    "bytes": 2752,
+    "sha256": "a512bfe4abe481e2cf0e0a7f6d4de2cd93b4a56c09ac92d88b288c3832e98816"
   },
   {
     "path": "site/style.css",
