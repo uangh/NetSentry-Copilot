@@ -21,8 +21,8 @@
   },
   {
     "path": "docs/PUBLIC_CHECKS.md",
-    "bytes": 1905,
-    "sha256": "58bd48dce262f105bea624c7f077001e6e924b4e8bc4183584a3eadd6a39899c"
+    "bytes": 2292,
+    "sha256": "6ddb0267c98ee3f060bec14524b630065795a135688d25a07b119680ab998134"
   },
   {
     "path": "docs/PUBLIC_EXPORT.md",
@@ -241,8 +241,8 @@
   },
   {
     "path": "GITHUB_PUBLISH.md",
-    "bytes": 2858,
-    "sha256": "f3b0519ee8e3c6303e711f7f0e7d70ef0249480e8ee7ec80301f8be55569f5a7"
+    "bytes": 3205,
+    "sha256": "d94cfbbb75c7ad468059cf77ebf30828afd639b495a895eddbde6a22b1339763"
   },
   {
     "path": "knowledge/README.md",
@@ -611,8 +611,8 @@
   },
   {
     "path": "README.md",
-    "bytes": 5758,
-    "sha256": "4dddfcd91ba85e993b4fefe2ed01df33da84f3168d6de1154bedf54e0cfe413e"
+    "bytes": 5957,
+    "sha256": "aff1cecff34a50edfb7139c7b2b5145d1d8cf7e63ac6bf5e59fdf507bf94c0a6"
   },
   {
     "path": "requirements-agent.txt",

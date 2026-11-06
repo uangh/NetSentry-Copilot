@@ -2,9 +2,9 @@
 
 **安全告警初步研判工作台：连接流量上下文、受控工具调查、证据报告与人工复核。**
 
-[已上线静态作品集](https://netsentry-portfolio.verdantadage.chatgpt.site/) · [本地作品集](site/index.html) · [精简项目案例](site/PUBLIC_CASE_STUDY.html) · [GitHub 发布说明](GITHUB_PUBLISH.md)
+[GitHub Pages 作品集](https://uangh.github.io/NetSentry-Copilot/) · [公开源码](https://github.com/uangh/NetSentry-Copilot) · [本地作品集](site/index.html) · [精简项目案例](site/PUBLIC_CASE_STUDY.html) · [GitHub 发布说明](GITHUB_PUBLISH.md)
 
-GitHub Pages 地址：**待此仓库完成 Pages 部署后填写**。上方已上线地址是现有 Sites 作品集，不是 GitHub Pages。
+GitHub Pages 已部署并完成桌面与手机浏览器检查，仅托管静态作品集。原 [Sites 作品集](https://netsentry-portfolio.verdantadage.chatgpt.site/) 仍可独立访问。
 
 ![NetSentry 真实控制台，Gemini 3.1 历史运行回放](site/assets/dashboard.png)
 

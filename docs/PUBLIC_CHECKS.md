@@ -15,10 +15,11 @@
 | 前端生产构建 | 通过 |
 | 合成CSV示例命令 | 实际运行成功，provenance=synthetic |
 | 缺失运行包预检 | 按预期退出2，列出缺失文件；没有生成Mock运行包 |
+| 正式GitHub Pages | 真实网址下1440px与390px的主页、案例、来源页共6组浏览器检查通过 |
 | Pages项目子路径 | /NetSentry-Copilot/ 下桌面1440px和手机390px的主页、精简案例、来源页共6组通过 |
 
 页面检查包含UTF-8中文、图片/样式/脚本、锚点、图集、首页案例入口和返回链接；没有本机文件地址、站点根目录资源路径、自动外部请求、业务后端请求、Key输入框或Gemini调用。移动端没有横向溢出。站点仅展示当前3.1历史回放，没有恢复旧失败章节或对比表。
 
 本次没有执行依赖真实运行包和checkpoint的业务浏览器集成测试，没有训练IDS、重评Week2或真实Gemini生成。检查日志、页面截图和逐项结果保存在导出目录旁的verification目录，不提交原始机器日志。
 
-公开候选文件扫描和最终Git暂存检查以 PUBLIC_SCAN.json 为准。GitHub远端和Pages是否完成以实际发布结果为准，本地模拟通过不等于远端已上线。
+公开候选文件扫描和最终Git暂存检查以 PUBLIC_SCAN.json 为准。已按用户授权上传至 [公开仓库](https://github.com/uangh/NetSentry-Copilot)，[Pages部署](https://github.com/uangh/NetSentry-Copilot/actions/runs/42179166047) 成功；[正式网页](https://uangh.github.io/NetSentry-Copilot/) 已实际访问并完成6组浏览器检查。本轮新增Gemini生成0次，已执行用户授权的远程推送。

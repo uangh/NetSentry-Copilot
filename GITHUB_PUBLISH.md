@@ -2,6 +2,8 @@
 
 推荐仓库名：`NetSentry-Copilot`。此目录是可提交副本；不要上传原工程或私有冻结ZIP。没有全项目新开源许可证，不要在GitHub初始化时自动添加MIT等许可证。
 
+当前仓库：[uangh/NetSentry-Copilot](https://github.com/uangh/NetSentry-Copilot)。当前作品集：[GitHub Pages](https://uangh.github.io/NetSentry-Copilot/)。已按用户授权完成公开上传与 Actions 部署，以下创建步骤供重新发布或复用时参考，无需重复创建。
+
 ## 创建和上传
 
 在GitHub选择 New repository，填写仓库名并选择Public；使用空仓库，不额外初始化README、.gitignore或许可证。只有确认账号和仓库后才配置remote。不要覆盖同名已有仓库。
