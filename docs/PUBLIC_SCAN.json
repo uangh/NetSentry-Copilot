@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "candidate_files_scanned": 191,
+  "issues": [],
+  "copied_original_files_unchanged": 174,
+  "real_data_or_weights_included": false,
+  "new_gemini_generations": 0,
+  "note": "Pattern scan plus explicit file allowlist review; not a comprehensive security certification."
+}

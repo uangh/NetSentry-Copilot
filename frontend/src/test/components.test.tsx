@@ -1,0 +1,23 @@
+import {render,screen,fireEvent,waitFor} from '@testing-library/react';
+import {QueryClient,QueryClientProvider} from '@tanstack/react-query';
+import {MemoryRouter} from 'react-router-dom';
+import {describe,it,expect,vi} from 'vitest';
+import type {Investigation,Flow} from '../types';
+import {ModelNotice,FlowView,StateBadge,SourceLink} from '../ui';
+import {ReviewForm} from '../investigation';
+import {Alerts} from '../pages';
+import {api} from '../api';
+const flow:Flow={record_id:'a'.repeat(64),source_ip:null,destination_ip:null,source_port:null,destination_port:null,protocol:6,timestamp:null,flow_duration:1,dataset_id:'synthetic',source_sha256:'b'.repeat(64)};
+const state:Investigation={investigation_id:'a'.repeat(32),thread_id:'a'.repeat(32),alert_id:'b'.repeat(32),review_status:'pending_review',report_version:1,stop_reason:'done',investigation_steps:[],report:null,remaining_external_calls:1,external_calls_used:5,planning_iterations:2,review_history:[],llm_events:[],interrupted:true};
+function wrap(node:React.ReactNode){return render(<QueryClientProvider client={new QueryClient({defaultOptions:{queries:{retry:false},mutations:{retry:false}}})}><MemoryRouter>{node}</MemoryRouter></QueryClientProvider>)}
+describe('truthful presentation',()=>{
+ it('shows DEV_ONLY and uncalibrated language',()=>{render(<ModelNotice/>);expect(screen.getByText(/DEV_ONLY/)).toBeInTheDocument();expect(screen.getByText(/不是校准攻击概率/)).toBeInTheDocument()});
+ it('does not invent missing IP',()=>{render(<FlowView flow={flow}/>);expect(screen.getAllByText('unknown / null')).toHaveLength(2);expect(screen.queryByText('192.168.1.1')).not.toBeInTheDocument()});
+ it.each(['running','pending_review','approved','rejected','failed','exact_record','candidate_unverified'])('renders truthful state %s',value=>{const {container}=render(<StateBadge value={value}/>);expect(container.textContent).not.toContain('已确认攻击');expect(container.textContent?.length).toBeGreaterThan(1)});
+ it('escapes HTML and blocks executable source URLs',()=>{render(<SourceLink url="javascript:alert(1)">{'<img src=x onerror=alert(1)>'}</SourceLink>);expect(document.querySelector('img')).toBeNull();expect(document.querySelector('a')).toBeNull();expect(screen.getByText(/<img/)).toBeInTheDocument()});
+ it('requires confirmation and sends actual version',async()=>{const submit=vi.spyOn(api,'review').mockResolvedValue({...state,review_status:'approved',interrupted:false});wrap(<ReviewForm state={state}/>);fireEvent.change(screen.getByLabelText('Reviewer Note / 审核意见'),{target:{value:'synthetic test note'}});fireEvent.click(screen.getByText('Approve Report'));expect(submit).not.toHaveBeenCalled();fireEvent.click(screen.getByText('确认并提交'));await waitFor(()=>expect(submit).toHaveBeenCalledOnce());expect(submit.mock.calls[0][1]).toMatchObject({expected_version:1,decision:'approve',note:'synthetic test note'});expect(submit.mock.calls[0][1].request_id).toMatch(/^[a-f0-9]{32}$/)});
+ it('shows version conflict instead of approval',async()=>{vi.spyOn(api,'review').mockRejectedValue(new Error('报告版本冲突'));wrap(<ReviewForm state={state}/>);fireEvent.click(screen.getByText('Request Revision'));fireEvent.click(screen.getByText('确认并提交'));expect(await screen.findByRole('alert')).toHaveTextContent('版本冲突')});
+ it('disables writes after finalized state',()=>{wrap(<ReviewForm state={{...state,review_status:'approved',interrupted:false}}/>);expect(screen.getByText('Approve Report')).toBeDisabled();expect(screen.getByText('Request Revision')).toBeDisabled()});
+ it('prevents duplicate in-flight submission',async()=>{const submit=vi.spyOn(api,'review').mockImplementation(()=>new Promise(()=>{}));wrap(<ReviewForm state={state}/>);fireEvent.click(screen.getByText('Approve Report'));fireEvent.click(screen.getByText('确认并提交'));await waitFor(()=>expect(screen.getByText('正在保存…')).toBeDisabled());expect(submit).toHaveBeenCalledOnce()});
+ it('applies filters and pagination to actual client parameters',async()=>{const alerts=vi.spyOn(api,'alerts').mockResolvedValue({alerts:[],total:12,limit:10,offset:0,has_more:true});vi.spyOn(api,'investigations').mockResolvedValue({records:[],total:0,scanned:0,truncated:false,counts:{}});wrap(<Alerts/>);await screen.findByText('没有符合筛选的告警');fireEvent.change(screen.getByLabelText('告警状态'),{target:{value:'candidate'}});fireEvent.click(screen.getByText('应用筛选'));await waitFor(()=>expect(alerts.mock.calls.at(-1)?.[0]).toContain('alert_status=candidate'));await waitFor(()=>expect(screen.getByText('下一页')).toBeEnabled());fireEvent.click(screen.getByText('下一页'));await waitFor(()=>expect(alerts.mock.calls.at(-1)?.[0]).toContain('offset=10'))});
+});

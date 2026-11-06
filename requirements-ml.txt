@@ -1,0 +1,10 @@
+# Actual Windows CPython 3.14.5 installation from https://pypi.org/simple.
+# Includes dpkt so the complete historical test suite can run in this environment.
+cloudpickle==3.1.2
+dpkt==1.9.8
+joblib==1.6.0
+narwhals==2.28.0
+numpy==2.5.4
+scikit-learn==1.9.1
+scipy==1.18.1
+threadpoolctl==3.7.0

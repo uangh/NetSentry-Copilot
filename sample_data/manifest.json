@@ -1,0 +1,26 @@
+{
+  "provenance": "synthetic",
+  "purpose": "software_contract_tests_only",
+  "files": [
+    {
+      "name": "features_only.csv",
+      "sha256": "cf6811f4075bbfd0fd4130048544ff4c1be762d63c7ce2696e25f67aad63d490"
+    },
+    {
+      "name": "with_network_metadata.csv",
+      "sha256": "efefa2d567178409507ac68d04985e806d8a594d62ead3674dc1e86e5034fe2c"
+    },
+    {
+      "name": "broken_numeric.csv",
+      "sha256": "2e73a7b797bb8e39406b37a9b603a7ccb872e01d10904ccee9190252aa0a6fc5"
+    },
+    {
+      "name": "duplicate_headers.csv",
+      "sha256": "3ade2e0f73dc25f87c1d56142bab652f04085bb5b24d7c35336f57c615887eab"
+    },
+    {
+      "name": "empty.csv",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

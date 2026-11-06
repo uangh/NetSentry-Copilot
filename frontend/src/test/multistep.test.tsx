@@ -1,0 +1,12 @@
+import {render,screen} from '@testing-library/react';
+import {it,expect} from 'vitest';
+import {DecisionTimeline,ToolResultCard} from '../multistep';
+import type {DecisionRound} from '../multistep';
+import type {Investigation} from '../types';
+const round:DecisionRound={iteration:1,investigation_goal:'host_behavior',tool_selected:'summarize_host_behavior',tool_arguments:{},question:'主机有哪些观察？',reason:'核对行为范围',expected_information:'记录统计',observations_before:[],new_observations_after:{total:849,analyzed_count:849,loaded:10,has_more:true,statistics:{unique_peers:4}},evidence_references:[],missing_evidence:['认证日志'],remaining_budget:{http:6},decision_to_continue_or_stop:'continue',actual_execution_status:'executed',new_record_ids:['one','two'],decision_source:'synthetic'};
+const state={multistep:{protocol:'m6.3.v1'},decision_trace:[round],planning_iterations:1,external_calls_used:3,stop_reason:'budget_exhausted'} as unknown as Investigation;
+it('renders persisted round count without invented three rounds',()=>{render(<DecisionTimeline state={state}/>);expect(screen.getByText(/Round 1/)).toBeInTheDocument();expect(screen.queryByText(/Round 2/)).not.toBeInTheDocument();expect(screen.getByText(/非实时流式过程/)).toBeInTheDocument()});
+it('separates count coverage from unique evidence',()=>{render(<ToolResultCard round={round}/>);expect(screen.getByText(/命中 849/)).toHaveTextContent('本页加载 10');expect(screen.getByText(/新增唯一记录/)).toHaveTextContent('2');expect(screen.getByText(/仍有未加载记录/)).toBeInTheDocument()});
+it('shows stopping without inventing tool result',()=>{render(<ToolResultCard round={{...round,tool_selected:'stop',new_observations_after:null,actual_execution_status:'stopped_without_external_call'}}/>);expect(screen.getByText(/没有新增工具结果/)).toBeInTheDocument()});
+it('marks deterministic baseline separately',()=>{render(<DecisionTimeline state={{...state,multistep:{protocol:'m6.3.v1',baseline:'fixed_rules'}}}/>);expect(screen.getByText(/增强确定性规则基线/)).toBeInTheDocument()});
+it('escapes untrusted planning reasons',()=>{render(<DecisionTimeline state={{...state,decision_trace:[{...round,reason:'<script>attack()</script>'}]}}/>);expect(screen.getByText(/<script>/)).toBeInTheDocument();expect(document.querySelector('script')).toBeNull()});

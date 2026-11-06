@@ -1,0 +1,9 @@
+import {render,screen} from '@testing-library/react';
+import {it,expect} from 'vitest';
+import {DecisionTimeline, type DecisionRound} from '../multistep';
+import type {Investigation} from '../types';
+const round={iteration:2,investigation_goal:'port_analysis',tool_selected:'analyze_port_distribution',tool_arguments:{},question:'端口如何分布',reason:'首轮有多个端口',expected_information:'端口计数',observations_before:[],new_observations_after:null,evidence_references:['obs_abcd_03'],missing_evidence:[],remaining_budget:{},decision_to_continue_or_stop:'continue',actual_execution_status:'executed',new_record_ids:[],decision_source:'synthetic',observation_ids_used:['obs_abcd_03'],new_observation_ids:['obs_abcd_04'],model_name:'synthetic',request_duration_ms:15,known_total_tokens:20} satisfies DecisionRound;
+const state={multistep:{protocol:'m6.3.1'},decision_trace:[round],planning_iterations:2,external_calls_used:4,observation_registry:[{observation_id:'obs_abcd_03',call_id:'call1',source_sha256:['hash']}]} as unknown as Investigation;
+it('shows actual short references, new IDs and per-round usage',()=>{render(<DecisionTimeline state={state}/>);expect(screen.getByText(/本轮合法观察引用/)).toHaveTextContent('obs_abcd_03');expect(screen.getByText(/本轮合法观察引用/)).toHaveTextContent('obs_abcd_04');expect(screen.getByText(/20 Tokens/)).toBeInTheDocument()});
+it('retains inspectable source mapping',()=>{render(<DecisionTimeline state={state}/>);expect(screen.getByText('观察引用注册表与真实来源映射').closest('details')).not.toHaveAttribute('open')});
+it('shows validation rejection without substitute success',()=>{render(<DecisionTimeline state={{...state,planning_attempts:[{validation_error:{code:'unknown_observation_reference'}}]}}/>);expect(screen.getByText(/规划校验未通过/)).toHaveTextContent('unknown_observation_reference')});

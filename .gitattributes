@@ -1,0 +1,2 @@
+# Preserve the reviewed exported bytes, including original test fixtures.
+* -text

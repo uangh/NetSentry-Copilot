@@ -1,0 +1,41 @@
+{
+  "cicids2017_glf": {
+    "dataset_id": "CIC-IDS2017-GeneratedLabelledFlows",
+    "duration_unit": "microseconds",
+    "timestamp_formats": ["%d/%m/%Y %H:%M:%S", "%d/%m/%Y %H:%M"],
+    "roles": {
+      "flow_id": ["Flow ID", "flow_id"],
+      "source_ip": ["Source IP", "Src IP"],
+      "destination_ip": ["Destination IP", "Dst IP"],
+      "source_port": ["Source Port", "Src Port"],
+      "destination_port": ["Destination Port", "Dst Port"],
+      "protocol": ["Protocol"], "timestamp": ["Timestamp"], "label": ["Label"]
+    },
+    "features": {
+      "flow_duration": ["Flow Duration"],
+      "fwd_packets": ["Total Fwd Packets", "Tot Fwd Pkts"],
+      "bwd_packets": ["Total Backward Packets", "Tot Bwd Pkts"],
+      "fwd_bytes": ["Total Length of Fwd Packets", "TotLen Fwd Pkts"],
+      "bwd_bytes": ["Total Length of Bwd Packets", "TotLen Bwd Pkts"],
+      "flow_bytes_per_second": ["Flow Bytes/s", "Flow Byts/s"],
+      "flow_packets_per_second": ["Flow Packets/s", "Flow Pkts/s"],
+      "fwd_packet_length_mean": ["Fwd Packet Length Mean", "Fwd Pkt Len Mean"],
+      "bwd_packet_length_mean": ["Bwd Packet Length Mean", "Bwd Pkt Len Mean"],
+      "flow_iat_mean": ["Flow IAT Mean"]
+    }
+  },
+  "cidds001": {
+    "dataset_id": "CIDDS-001",
+    "duration_unit": "seconds",
+    "timestamp_formats": ["%Y-%m-%d %H:%M:%S.%f", "%Y-%m-%d %H:%M:%S"],
+    "roles": {
+      "flow_id": ["Flow ID"],
+      "source_ip": ["Src IP Addr", "Src IP"],
+      "destination_ip": ["Dst IP Addr", "Dest IP"],
+      "source_port": ["Src Pt", "Src Port"],
+      "destination_port": ["Dst Pt", "Dest Port"],
+      "protocol": ["Proto"], "timestamp": ["Date first seen"], "label": ["class"]
+    },
+    "features": {"flow_duration": ["Duration"], "packets": ["Packets"], "bytes": ["Bytes"]}
+  }
+}

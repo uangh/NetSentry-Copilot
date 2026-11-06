@@ -1,0 +1,4 @@
+Dst Port,Protocol,Flow Duration,Flow Byts/s,Label
+22,6,1200,Infinity,BENIGN
+22,6,,42,EXAMPLE_ATTACK
+22,6,bad,NaN,BENIGN
